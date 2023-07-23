@@ -90,6 +90,7 @@ for i in range(framescount):
     runlength=runlengthCompress(data[i],5)
     if i>0:
       changes=interframeCreateInstruction(uncompressed[i-1],data[i])
+      #quick compression method is better? Well, I guess there's only one way to know for sure
       if len(runlength)<len(changes):
         data[i]=runlength
       else:
