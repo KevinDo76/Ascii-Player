@@ -17,7 +17,7 @@ def KeyGen(txt):
   e=e-math.floor(e)
   return n*e
 def Encrypt(Text,Key):
-  random.seed(Key-len(Text)%10000)
+  random.seed(Key-len(Text)%600000000)
   finaltxt=""
   for i in range(len(Text)):
     if ord(Text[i])==10:
@@ -27,10 +27,10 @@ def Encrypt(Text,Key):
     n=random.randint(-1000,1000)
     finaltxt+=chr(Wrap(ord(boi)+n))
   return finaltxt
-#lol bad encryption, using python random lib security 10/10
+
 def Decrypt(Text,Key):
-  a=""    
-  random.seed(Key-len(Text)%100000)
+  a=""
+  random.seed(Key-len(Text)%600000000)
   for i in range(len(Text)):
     n=-random.randint(-1000,1000)
     a+=chr(Wrap(ord(Text[i])+n))

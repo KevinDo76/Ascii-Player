@@ -4,6 +4,9 @@ import random
 import time
 import math
 import threading
+#data file names
+musicpath="data"
+visualpath="data2.txt"
 #decrypt functions
 def Wrap(cn):
   if cn>126:
@@ -77,8 +80,7 @@ def run():
   global currentDecrypt
   import winsound
   #load data
-  musicpath="data"
-  file=open(str(os.getcwd())+"\data4.txt","r")
+  file=open(str(os.getcwd())+"\\"+visualpath,"r")
   frames=file.read()
   file.close()
   #reading resolution/framerate

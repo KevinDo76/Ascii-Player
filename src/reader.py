@@ -1,13 +1,17 @@
-import scamble as en
+import Scramble as en
 from PIL import Image
 import math
 import os
+#important variables
 framescount=4002
 key=1234
+fps=25
+outputname="data4.txt"
+inputImageFolderPath="\\rick\\scene"
+#running variable
 Shade=["@","#","W","w","l","o","c","i",";",":","*",",","."," "]
 ShadeF=len(Shade)
 rang=255/ShadeF
-fps=25
 size=[]
 data=[]
 uncompressed=[]
@@ -65,7 +69,7 @@ def runlengthCompress(text,min):
 for i in range(framescount):
     data.insert(i,"")
     uncompressed.insert(i,"")
-    img=Image.open(os.getcwd()+"\\rick\\scene"+str(i+1).zfill(5)+".jpg")
+    img=Image.open(os.getcwd()+inputImageFolderPath+str(i+1).zfill(5)+".jpg")
     pix=img.load()
     size.append(img.size[0])
     size.append(img.size[1])
@@ -98,7 +102,7 @@ for i in range(framescount):
 final="FR".join(data)
 final=en.Encrypt("DECRYPTSUCCESS",key)+"SEP"+str(img.size[0])+"SEP"+str(img.size[1])+"SEP"+str(fps)+"SEP"+str(framescount)+"SEP"+en.Encrypt(final,key)
 print(len(final)/(64*64))
-file=open(os.getcwd()+"\\data4.txt","w")
+file=open(os.getcwd()+"\\"+outputname,"w")
 print(str(size[0]*size[1]*framescount)+" "+str(len(final))+" "+str(len(final)/len("FR".join(uncompressed))))
 file.write(final)
 file.close()
